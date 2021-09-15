@@ -1,0 +1,45 @@
+{
+  "name": "@carmel/node",
+  "version": "1.1.0",
+  "description": "The Carmel Node",
+  "scripts": {
+    "compile": "rm -rf lib && tsc",
+    "start": "DEBUG=carmel* ts-node --project tsconfig.json src/start.ts",
+    "test": "savor test",
+    "cov": "savor cov",
+    "viewcov": "savor viewcov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fluidtrends/carmel.node.git"
+  },
+  "author": "I. Dan Calinescu <idancalinescu@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fluidtrends/carmel.node/issues"
+  },
+  "carmel": {},
+  "keywords": [],
+  "homepage": "https://github.com/fluidtrends/carmel.node",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/**/*",
+    "src/**/*",
+    "tsconfig.json"
+  ],
+  "dependencies": {
+    "@carmel/mesh": "^1.1.0",
+    "fs-extra": "^9.1.0",
+    "ipfsd-ctl": "^7.2.0",
+    "jshint": "^2.13.1",
+    "libp2p-gossipsub": "^0.11.3",
+    "libp2p-webrtc-star": "^0.23.0",
+    "wrtc": "^0.4.7"
+  },
+  "devDependencies": {
+    "savor": "^1.3.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.5"
+  }
+}
