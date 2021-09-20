@@ -1,4 +1,5 @@
 import { Node } from './Node' 
+import * as handlers from './handlers'
 
 (async () => {
     const isOperator = process.env.OPERATOR
@@ -7,7 +8,7 @@ import { Node } from './Node'
 
     try {
         const config = require('../private.json')
-        const server = new Node({ revision, root, isOperator, ...config })
+        const server = new Node({ revision, root, isOperator, ...config, handlers })
 
         process.on('SIGINT', async () => {
             await server.stop()
@@ -17,7 +18,7 @@ import { Node } from './Node'
         await server.start()
 
         if (!isOperator) {
-            await server.send.ping("Hello")
+            await server.send.ping({ message: "Hello" })
         }
     } catch (e) {
         console.log(e)
