@@ -1,10 +1,11 @@
 {
   "name": "@carmel/node",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "The Carmel Node",
   "scripts": {
     "compile": "rm -rf lib && tsc",
-    "start": "DEBUG=carmel* ts-node --project tsconfig.json src/start.ts",
+    "start": "DEBUG=carmel* REV=1a ts-node --project tsconfig.json src/start.ts",
+    "start:op": "DEBUG=carmel* OPERATOR=true REV=1a ts-node --project tsconfig.json src/start.ts",
     "test": "savor test",
     "cov": "savor cov",
     "viewcov": "savor viewcov"
@@ -29,7 +30,7 @@
     "tsconfig.json"
   ],
   "dependencies": {
-    "@carmel/mesh": "^1.1.2",
+    "@carmel/mesh": "^1.1.3",
     "fs-extra": "^9.1.0",
     "ipfsd-ctl": "^7.2.0",
     "jshint": "^2.13.1",
