@@ -4,7 +4,8 @@
   "description": "The Carmel Node",
   "scripts": {
     "compile": "rm -rf lib && tsc",
-    "start": "DEBUG=carmel* ts-node --project tsconfig.json src/start.ts",
+    "start": "DEBUG=carmel* REV=1a ts-node --project tsconfig.json src/start.ts",
+    "start:op": "DEBUG=carmel* OPERATOR=true REV=1a ts-node --project tsconfig.json src/start.ts",
     "test": "savor test",
     "cov": "savor cov",
     "viewcov": "savor viewcov"
