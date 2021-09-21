@@ -1,4 +1,4 @@
-import { Session } from '@carmel/mesh'
+import { Session } from '@carmel/mesh/src'
 import { ipfsConfig } from '.'
 import path from 'path'
 import fs from 'fs-extra'
