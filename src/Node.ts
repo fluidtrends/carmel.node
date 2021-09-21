@@ -33,7 +33,8 @@ export class Node {
     }
 
     async stop () {
-        LOG('stopping IPFS node')
+        LOG('stopping node')
+
         await this.session.stop()
     }
 
