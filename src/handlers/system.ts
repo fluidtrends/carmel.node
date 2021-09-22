@@ -7,9 +7,13 @@ export const request = async ({ session, event, eventlog }: any) => {
     switch (call) {
         case "register":
             eventlog(`registering ${data.username} ...`)
-            result = await session.server.chain.eos.system(session.server.chain, "caccount", { username: data.username, pub_key: data.publicKey, did: `did:carmel:${data.cid}` })
+            result = await session.server._.system("caccount", { username: data.username, pub_key: data.publicKey, did: data.did })
             break
-    }
+        case "update":
+            eventlog(`updating ${data.username} ...`)
+            result = await session.server._.system("uaccount", { username: data.username, did: data.did, sig: data.signature })
+            break
+        }
 
     return result 
 }
