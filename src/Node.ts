@@ -11,17 +11,18 @@ export class Node {
 
     private _session: Session
     private _root: string 
+    private _ipfs: any
 
     constructor (config: any = {}) {
         this._root = config.root || DEFAULT_ROOT
-        
+
         fs.existsSync(this.root) || fs.mkdirpSync(this.root)
         
-        this._session = new Session({
-            isOperator: true,
-            ...config,
-            root: this.root,
-        })
+        this._session = new Session({ ...config, root: this.root })
+    }
+
+    get ipfs () {
+        return this._ipfs
     }
 
     get session() {
@@ -33,27 +34,31 @@ export class Node {
     }
 
     async stop () {
-        LOG('stopping node')
+        LOG('stopping ...')
 
         await this.session.stop()
+
+        try {
+            await this.ipfs.stop()
+        } catch {}
+
+        LOG('stopped')
     }
 
     async start () {
-       const relays = await this.session.server.resolveRelays()
-       const config = ipfsConfig(relays, `${this.root}/ipfs`, this.session.config.isOperator ? [4002, 4003, 5002, 5003, 9090] : [4102, 4103, 5102, 5103, 9190])
+       LOG('starting ...')
+
+       const relays = await this.session.chain.fetch.relays()
+       const config = ipfsConfig(relays, `${this.root}/ipfs`, this.session.config.isOperator ? [4202, 4203, 5202, 5203, 9290] : [4102, 4103, 5102, 5103, 9190])
     
        const { ipfsBin } = config 
        const { createFactory } = require('ipfsd-ctl')
 
        const factory = createFactory(config, { js: { ipfsBin } })
-       const ipfs = await factory.spawn()
+       this._ipfs = await factory.spawn()
 
-       LOG('spawned IPFS node')
+       LOG('connected to IPFS')
 
-       await this.session.start(ipfs)
-    }
-
-    get send () {
-        return this.session.server.send
+       await this.session.start(this.ipfs)
     }
 }
