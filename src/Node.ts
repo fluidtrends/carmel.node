@@ -37,7 +37,10 @@ export class Node {
         LOG('stopping ...')
 
         await this.session.stop()
-        await this.ipfs.stop()
+
+        try {
+            await this.ipfs.stop()
+        } catch {}
 
         LOG('stopped')
     }
@@ -46,7 +49,7 @@ export class Node {
        LOG('starting ...')
 
        const relays = await this.session.chain.fetch.relays()
-       const config = ipfsConfig(relays, `${this.root}/ipfs`, this.session.config.isOperator ? [4002, 4003, 5002, 5003, 9090] : [4102, 4103, 5102, 5103, 9190])
+       const config = ipfsConfig(relays, `${this.root}/ipfs`, this.session.config.isOperator ? [4202, 4203, 5202, 5203, 9290] : [4102, 4103, 5102, 5103, 9190])
     
        const { ipfsBin } = config 
        const { createFactory } = require('ipfsd-ctl')

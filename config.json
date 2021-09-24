@@ -1,6 +1,18 @@
 {   
     "revision": "1a",
-    "isOperator": true,
+    "channels": {
+        "sys:ops": {
+            "events": {
+                "req:register": "register",
+                "req:update": "update"
+            }
+        },
+        "stats:utils": {
+            "events": {
+                "req:time": "time"
+            }
+        }
+    },
     "chain": {
         "url": "https://eos.greymass.com",
         "type": "mainnet",
