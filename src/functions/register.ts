@@ -1,4 +1,4 @@
-export const handler = async ({ session, event, log }: any) => {
+export const request = async ({ session, event, log }: any) => {
     const { data } = event 
     const { username, publicKey, did } = data 
 
