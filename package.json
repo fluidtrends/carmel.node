@@ -32,7 +32,7 @@
   "dependencies": {
     "@carmel/mesh": "^1.1.7",
     "deepmerge": "^4.2.2",
-    "fs-extra": "^9.1.0",
+    "fs-extra": "^10.0.0",
     "ipfs": "^0.58.6",
     "ipfsd-ctl": "^7.2.0",
     "jshint": "^2.13.1",
